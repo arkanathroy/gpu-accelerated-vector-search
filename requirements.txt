@@ -1,0 +1,9 @@
+faiss-gpu-cuvs
+sentence-transformers==3.4.1
+datasets==3.5.0
+grpcio==1.71.0
+grpcio-tools==1.71.0
+nvidia-ml-py==12.560.30
+tqdm==4.67.1
+numpy>=1.26
+torch>=2.2.0

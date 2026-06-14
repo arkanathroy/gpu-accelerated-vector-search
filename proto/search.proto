@@ -1,0 +1,36 @@
+syntax = "proto3";
+package vectorsearch;
+
+service SearchService {
+  rpc Search      (SearchRequest)  returns (SearchResponse);
+  rpc HealthCheck (HealthRequest)  returns (HealthResponse);
+}
+
+message SearchRequest {
+  string query_text  = 1;
+  int32  top_k       = 2;
+  string index_type  = 3;  // "hnsw" | "ivfpq" | "cagra"
+}
+
+message SearchResult {
+  string passage_id   = 1;
+  string passage_text = 2;
+  float  score        = 3;
+  int32  rank         = 4;
+}
+
+message SearchResponse {
+  repeated SearchResult results    = 1;
+  float                 latency_ms = 2;
+  string                index_used = 3;
+}
+
+message HealthRequest {}
+
+message HealthResponse {
+  string status          = 1;
+  int32  vectors_indexed = 2;
+  string gpu_name        = 3;
+  float  vram_used_gb    = 4;
+  float  vram_total_gb   = 5;
+}

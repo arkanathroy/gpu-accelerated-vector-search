@@ -1,0 +1,31 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.env
+venv/
+.venv/
+
+# Data & Artifacts (too large for Git)
+data/
+embeddings/
+indexes/
+benchmarks/
+
+# Generated protobuf stubs
+generated/
+
+# Jupyter checkpoints
+.ipynb_checkpoints/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# NVIDIA profiler output
+*.nsys-rep
+*.qdrep
