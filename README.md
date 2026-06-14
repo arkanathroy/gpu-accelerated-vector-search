@@ -36,7 +36,7 @@ A production-grade semantic search microservice over **200K MS-MARCO passages** 
 2. Runtime → Change runtime type → **T4 GPU**
 3. Run all cells top to bottom
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/YOUR_USERNAME/gpu-vector-search/blob/main/notebooks/gpu_vector_search_colab.ipynb)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/arkanathroy/gpu-vector-search/blob/main/notebooks/gpu_vector_search_colab.ipynb)
 
 ---
 
