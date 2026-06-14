@@ -43,7 +43,7 @@ A production-grade semantic search microservice over **200K MS-MARCO passages** 
 ## Repository Structure
 
 ```
-gpu-vector-search/
+gpu-accelerated-vector-search/
 ├── notebooks/
 │   └── gpu_vector_search_colab.ipynb   # Full end-to-end Colab notebook
 ├── src/
