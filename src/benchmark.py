@@ -76,7 +76,7 @@ def batch_qps(idx, queries: np.ndarray, k: int,
         if is_gpu:
             torch.cuda.synchronize()
         t0 = time.perf_counter()
-        for _ in range(20): 
+        for _ in range(20):
             idx.search(batch, k)
         if is_gpu:
             torch.cuda.synchronize()
