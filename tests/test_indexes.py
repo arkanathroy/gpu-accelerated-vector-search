@@ -36,14 +36,14 @@ def test_hnsw_ntotal(hnsw_index):
 
 
 def test_hnsw_search_shape(hnsw_index, query_embs):
-    D, I = hnsw_index.search(query_embs[:10], K)
-    assert D.shape == (10, K)
-    assert I.shape == (10, K)
+    distances, indices = hnsw_index.search(query_embs[:10], K)
+    assert distances.shape == (10, K)
+    assert indices.shape == (10, K)
 
 
 def test_hnsw_no_negative_ids(hnsw_index, query_embs):
-    _, I = hnsw_index.search(query_embs[:50], K)
-    assert (I >= 0).all(), "Found -1 (unfilled) IDs in HNSW search results"
+    _, indices = hnsw_index.search(query_embs[:50], K)
+    assert (indices >= 0).all(), "Found -1 (unfilled) IDs in HNSW search results"
 
 
 def test_embeddings_normalised(query_embs):

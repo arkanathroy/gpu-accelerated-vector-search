@@ -19,7 +19,6 @@ Run:
 
 import argparse
 import json
-import os
 import time
 from pathlib import Path
 
@@ -77,7 +76,7 @@ def build_hnsw_cpu(embeddings: np.ndarray, idx_dir: Path) -> dict:
         return {}
 
     D = embeddings.shape[1]
-    print(f"  Building CPU HNSW (M=32, efConstruction=200)...")
+    print("  Building CPU HNSW (M=32, efConstruction=200)...")
     t0    = time.perf_counter()
     index = faiss.IndexHNSWFlat(D, 32, faiss.METRIC_INNER_PRODUCT)
     index.hnsw.efConstruction = 200
@@ -159,7 +158,7 @@ def build_cagra_gpu(embeddings: np.ndarray, idx_dir: Path,
     cfg.intermediate_graph_degree = 64
     cfg.build_algo = faiss.graph_build_algo_IVF_PQ
 
-    print(f"  Building GPU CAGRA (graph_degree=32, intermediate=64)...")
+    print("  Building GPU CAGRA (graph_degree=32, intermediate=64)...")
     monitor.start()
     cagra = faiss.GpuIndexCagra(res, D, faiss.METRIC_INNER_PRODUCT, cfg)
     cagra.train(embeddings)   # CAGRA: train() indexes everything

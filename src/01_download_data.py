@@ -13,7 +13,6 @@ Run:
 
 import argparse
 import json
-import os
 from pathlib import Path
 
 from datasets import load_dataset

@@ -6,7 +6,9 @@ Standalone benchmark script — can also be imported as a module.
 Usage (from repo root after building indexes):
   python src/benchmark.py --idx-dir indexes --emb-dir embeddings --out benchmarks
 """
-import argparse, json, os, sys, time
+import argparse
+import json
+import time
 from pathlib import Path
 
 import faiss
@@ -45,10 +47,12 @@ def latency_profile(idx, queries: np.ndarray, k: int,
     lats = []
     for i in range(warmup + trials):
         q = queries[i % len(queries)].reshape(1, -1)
-        if is_gpu: torch.cuda.synchronize()
+        if is_gpu:
+            torch.cuda.synchronize()
         t0 = time.perf_counter()
         idx.search(q, k)
-        if is_gpu: torch.cuda.synchronize()
+        if is_gpu:
+            torch.cuda.synchronize()
         if i >= warmup:
             lats.append((time.perf_counter() - t0) * 1000)
     a = np.array(lats)
@@ -67,11 +71,15 @@ def batch_qps(idx, queries: np.ndarray, k: int,
     result = {}
     for bs in batch_sizes:
         batch = queries[:bs]
-        for _ in range(3): idx.search(batch, k)
-        if is_gpu: torch.cuda.synchronize()
+        for _ in range(3):
+            idx.search(batch, k)
+        if is_gpu:
+            torch.cuda.synchronize()
         t0 = time.perf_counter()
-        for _ in range(20): idx.search(batch, k)
-        if is_gpu: torch.cuda.synchronize()
+        for _ in range(20): 
+            idx.search(batch, k)
+        if is_gpu:
+            torch.cuda.synchronize()
         result[str(bs)] = round((20 * bs) / (time.perf_counter() - t0), 1)
     return result
 
@@ -89,7 +97,8 @@ def energy_per_1k_queries(idx, queries: np.ndarray, k: int, handle) -> tuple[flo
 def run_benchmark(idx_dir: Path, emb_dir: Path, out_dir: Path, k: int = 10):
     handle = _nvml_handle()
     res = faiss.StandardGpuResources()
-    co  = faiss.GpuClonerOptions(); co.use_cuvs = True
+    co  = faiss.GpuClonerOptions()
+    co.use_cuvs = True
 
     query_embs   = np.load(emb_dir / "query_embs.npy").astype("float32")
     passage_embs = np.load(emb_dir / "passage_embs.npy").astype("float32")
@@ -108,7 +117,8 @@ def run_benchmark(idx_dir: Path, emb_dir: Path, out_dir: Path, k: int = 10):
             cpu.hnsw.efSearch = 128
             return cpu
         g = faiss.index_cpu_to_gpu(res, 0, cpu, co)
-        if nprobe: g.nprobe = nprobe
+        if nprobe:
+            g.nprobe = nprobe
         return g
 
     indexes = {

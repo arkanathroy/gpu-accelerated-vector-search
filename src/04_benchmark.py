@@ -221,7 +221,7 @@ def main():
         _, pred = ivfpq_gpu.search(query_embs, K)
         r = recall_at_k(pred, gt, K)
         lat_n = latency_profile(ivfpq_gpu, query_embs, K, warmup=10, trials=100)
-        def _q1k(): 
+        def _q1k():
             for i in range(1000):
                 ivfpq_gpu.search(query_embs[i % len(query_embs)].reshape(1, -1), K)
         _, e_j, _ = monitor.measure(_q1k)

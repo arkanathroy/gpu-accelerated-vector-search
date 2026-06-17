@@ -21,9 +21,7 @@ from pathlib import Path
 
 import faiss
 import grpc
-import numpy as np
 import pynvml
-import torch
 from sentence_transformers import SentenceTransformer
 
 sys.path.insert(0, "generated")

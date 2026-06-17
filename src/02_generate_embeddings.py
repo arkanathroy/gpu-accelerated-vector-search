@@ -19,7 +19,6 @@ from pathlib import Path
 
 import numpy as np
 from sentence_transformers import SentenceTransformer
-from tqdm import tqdm
 
 MODEL_NAME = "all-MiniLM-L6-v2"
 BATCH_SIZE = 512   # T4 has 16 GB VRAM; 512 is safe for this model (~90 MB)
@@ -86,4 +85,4 @@ if __name__ == "__main__":
     print(f"\nVRAM estimate for 200K × {dim}-dim vectors on T4:")
     print(f"  Raw float32          : {raw_mb:>7.1f} MB")
     print(f"  IVF-PQ (M=32 bytes)  : {ivfpq_mb:>7.1f} MB")
-    print(f"  T4 VRAM available    :  16,384 MB  ✓ fits easily")
+    print("  T4 VRAM available    :  16,384 MB  ✓ fits easily")
