@@ -10,7 +10,8 @@ venv/
 data/
 embeddings/
 indexes/
-benchmarks/
+benchmarks/*
+!benchmarks/results.json
 
 # Generated protobuf stubs
 generated/
