@@ -29,6 +29,7 @@ jobs:
       - name: Compile protobuf stubs
         run: |
           pip install grpcio-tools
+          mkdir -p generated
           python -m grpc_tools.protoc \
             -I proto \
             --python_out=generated \
